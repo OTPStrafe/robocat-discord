@@ -17,7 +17,12 @@ const rnum = require('../bot/commands/roll')
 
 
 
-require('dotenv').config()
+if(process.env.NODE_ENV === 'production'){
+    return
+} else {
+    require('dotenv').config()
+}
+
 
 function init() {
     client.login(process.env.TOKEN);
