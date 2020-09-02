@@ -6,11 +6,6 @@ const cors = require('cors')
 const volleyball = require('volleyball')
 const helmet = require('helmet')
 
-if(process.env.NODE_ENV === 'production'){
-    return
-} else {
-    require('dotenv').config()
-}
 
 
 app.use(cors())

@@ -17,11 +17,7 @@ const rnum = require('../bot/commands/roll')
 
 
 
-if(process.env.NODE_ENV === 'production'){
-    return
-} else {
-    require('dotenv').config()
-}
+
 
 
 function init() {
