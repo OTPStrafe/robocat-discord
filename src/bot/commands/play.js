@@ -1,7 +1,6 @@
 
 function turnPlay(res) {
 
-
     var userChoice = res
 
     if(userChoice === undefined) {

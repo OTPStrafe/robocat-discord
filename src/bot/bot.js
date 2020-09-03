@@ -1,25 +1,26 @@
-const Discord = require('discord.js');
+const Discord = require('discord.js'); // Discord
 const client = new Discord.Client();
 
-const axios = require('axios').default
-
-
-const DabiImages = require("dabi-images");
+const DabiImages = require("dabi-images"); // NSFW
 const DabiClient = new DabiImages.Client();
 
+const axios = require('axios').default // Peticiones
 
+if(process.env.NODE_ENV === 'production'){
+    return;
+} else {
+    require('dotenv').config()
+}
+
+
+// Algunos Comandos
 
 const play = require('../bot/commands/play')
 const rnum = require('../bot/commands/roll')
+const meme = require('../bot/commands/meme')
+const nsfw = require('../bot/commands/NSFW')
 
-
-
-
-
-
-
-
-
+// Inicia el bot desde index.js
 function init() {
     client.login(process.env.TOKEN);
 }
@@ -110,7 +111,7 @@ client.on('message', message => {
     
         async function loadMeme(){
             try{
-                const url = await getMeme()
+                const url = await meme.getMeme()
                 const embed = new Discord.MessageEmbed()
                 .setImage(url)
                 .setTitle('Nuevo Meme Generado! :heart:')
@@ -149,23 +150,31 @@ client.on('message', message => {
 
         
 
-    }
+    } else if (commandHandler === `${prefix}tetica`){
+        if(message.guild.nsfw === false){
+            message.channel.send('Intenta nuevamente en un canal NSFW!')
+            return;
+        }
+
+        async function loadBoobs(){
+            try {
+                const url = await nsfw.getBoobs();
+                const embed = new Discord.MessageEmbed()
+                .setImage(url)
+                .setTitle('Nueva Tetica Generada :heart:')
+                .setColor('#1ed3ec')
+                message.channel.send(embed)
+            } catch (err){
+                message.channel.send('Error al generar Tetica :broken_heart:')
+                console.log(err)
+            }
+
+        }
+
+        
+        loadBoobs()
+    } 
 });
-
-
-
-async function getMeme(){
-    const response = await axios.get("https://meme-api.herokuapp.com/gimme/deepfriedmemes/2")
-    .then(({ data }) => {
-        let res = data.memes[0].url
-        return res
-    })
-    .catch(error=>{
-    console.log(error);
-    });
-    
-    return response
-} 
 
 async function getCurrency(from, to, value){
 
