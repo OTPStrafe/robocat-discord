@@ -146,11 +146,10 @@ client.on('message', message => {
         
 
     } else if (commandHandler === `${prefix}tetica`){
-        if(message.guild.nsfw === false){
-            message.channel.send('Intenta nuevamente en un canal NSFW!')
+        if(!message.channel.nsfw) {
+            message.channel.send('Intentalo nuevamente en un canal NSFW')
             return;
         }
-
         async function loadBoobs(){
             try {
                 const url = await nsfw.getBoobs();
