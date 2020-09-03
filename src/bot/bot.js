@@ -6,11 +6,6 @@ const DabiClient = new DabiImages.Client();
 
 const axios = require('axios').default // Peticiones
 
-if(process.env.NODE_ENV === 'production'){
-    return;
-} else {
-    require('dotenv').config()
-}
 
 
 // Algunos Comandos
