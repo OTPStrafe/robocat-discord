@@ -71,37 +71,26 @@ client.on('message', message => {
         poto()
         
 
-    } else if (commandHandler === `${prefix}potoanime`){
+    } else if (commandHandler === `${prefix}hentai`){
         if(!message.channel.nsfw) {
             message.channel.send('Intentalo nuevamente en un canal NSFW')
             return;
         }
-        async function potoAnime(){
-            await DabiClient.nsfw.hentai.ass().then(json => {
-        
-                imgURL = json.url
+       async function loadHentai(){
+           try {
+            const url = await nsfw.getHentai()
+            const embed = new Discord.MessageEmbed()
+            .setImage(url)
+            .setTitle('Hentai Generado! :heart:')
+            .setColor('#1ed3ec')
+            message.channel.send(embed)
+           } catch(err){
+            message.channel.send('Error al Generar Fotito Hentai ;(')
+            console.log(err)
+           }
 
-                if(!imgURL || imgURL === null){
-
-                    message.channel.send('Fallo al obtener el poto :broken_heart:')
-                    return;
-                }
-                const embed = new Discord.MessageEmbed()
-                  .setTitle('Nueva Foto Anime Generada! :heart:')
-                  .setImage(imgURL)
-                  .setColor('#1ed3ec')
-        
-                message.channel.send(embed);
-                console.log('Poto generado correctamente')
-        
-        
-            }).catch(error => {
-                message.channel.send('Fallo al obtener el poto :broken_heart:')
-                console.log(error)
-            })
-        
-        }
-        potoAnime()
+       }
+        loadHentai()
     } else if (commandHandler === `${prefix}meme`) {
     
         async function loadMeme(){
