@@ -14,6 +14,7 @@ const play = require('../bot/commands/play')
 const rnum = require('../bot/commands/roll')
 const meme = require('../bot/commands/meme')
 const nsfw = require('../bot/commands/NSFW')
+const anime = require('../bot/commands/anime')
 
 // Inicia el bot desde index.js
 function init() {
@@ -58,6 +59,7 @@ client.on('message', message => {
                   .setTitle('Nuevo Poto Generado! :heart:')
                   .setImage(imgURL)
                   .setColor('#1ed3ec')
+                
         
                 message.channel.send(embed);
                 console.log('Poto generado correctamente')
@@ -156,8 +158,34 @@ client.on('message', message => {
 
         
         loadBoobs()
+    } else if (argsHandler[0] === `${prefix}buscaranime`){
+
+        async function loadSearch(q1, q2, t){
+
+            try {
+                const data = await anime.searchAnime(q1, q2, t)
+                const embed = new Discord.MessageEmbed()
+                .setColor('#1ed3ec')
+                .setTitle(`Titulo: ${data.title}`)
+                .setDescription(data.syn)
+                .setImage(data.image)
+                .addField('Episodios ', data.ep)
+                .addField('Más informacion: ', data.url)
+                .setFooter(`${data.score}`, 'http://www.rw-designer.com/icon-image/1461-256x256x8.png')
+                message.channel.send(embed)
+            } catch(err){
+                console.log(err)
+                message.channel.send('Error interno o Error al intentar encontrar el anime.')
+            } 
+        }
+        let q2 = argsHandler[2]
+        let q1 = argsHandler[1]
+        let t = argsHandler[3]
+        loadSearch(q1, q2, t)
     } 
 });
+
+
 
 async function getCurrency(from, to, value){
 
