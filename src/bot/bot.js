@@ -33,10 +33,10 @@ client.on('message', message => {
 	// const commandHandler = message.content.trim().toLowerCase()
 	// const argsHandler = message.content.trim().toLowerCase().split(' ')
     const prefix = config.PREFIX
-    console.log(message.content)
+
     const args = message.content.slice(prefix.length).trim().split(/ +/);
     const command = prefix + args.shift().toLowerCase();
-    console.log()
+
 
 	if(command === `${prefix}info`) {
 		message.channel.send('Toda la informacion en <#746278725443780699>')
