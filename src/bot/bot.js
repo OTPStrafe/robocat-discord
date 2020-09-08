@@ -6,7 +6,7 @@ const DabiClient = new DabiImages.Client();
 
 const axios = require('axios').default // Peticiones
 
-
+require('dotenv').config()
 
 // Algunos Comandos
 
@@ -14,6 +14,7 @@ const play = require('../bot/commands/play')
 const rnum = require('../bot/commands/roll')
 const meme = require('../bot/commands/meme')
 const nsfw = require('../bot/commands/NSFW')
+const ball = require('../bot/commands/8ball')
 const anime = require('../bot/commands/anime')
 
 // Inicia el bot desde index.js
@@ -37,18 +38,18 @@ client.on('message', message => {
     const command = args.shift().toLowerCase();
     
 
-	if (command === `info`) {
+	if (command === `${prefix}info`) {
 		message.channel.send('Toda la informacion en <#746278725443780699>')
-	} else if (command === `roll`){
+	} else if (command === `${prefix}roll`){
         
         message.reply(`Tu numero: ${rnum.roll()}`)
 
-    } else if (command === `play`){
+    } else if (command === `${prefix}play`){
 
         message.channel.send(play.turnPlay(args))
-
+ 
     
-    } else if (command === `poto`){
+    } else if (command === `${prefix}poto`){
         if(!message.channel.nsfw) {
             message.channel.send('Intentalo nuevamente en un canal NSFW')
             return;
@@ -76,7 +77,7 @@ client.on('message', message => {
         poto()
         
 
-    } else if (command === `hentai`){
+    } else if (command === `${prefix}hentai`){
         if(!message.channel.nsfw) {
             message.channel.send('Intentalo nuevamente en un canal NSFW')
             return;
@@ -96,7 +97,7 @@ client.on('message', message => {
 
        }
         loadHentai()
-    } else if (command === `meme`) {
+    } else if (command === `${prefix}meme`) {
     
         async function loadMeme(){
             try{
@@ -117,7 +118,7 @@ client.on('message', message => {
         loadMeme()
         
 
-    } else if (command === `dolar`){
+    } else if (command === `${prefix}dolar`){
         const from = args[0];
         const to = args[1];
         const value = args[2];
@@ -139,7 +140,7 @@ client.on('message', message => {
 
         
 
-    } else if (command === `tetica`){
+    } else if (command === `${prefix}tetica`){
         if(!message.channel.nsfw) {
             message.channel.send('Intentalo nuevamente en un canal NSFW')
             return;
@@ -161,7 +162,7 @@ client.on('message', message => {
 
         
         loadBoobs()
-    } else if (command === `buscaranime`){
+    } else if (command === `${prefix}buscaranime`){
 
         async function loadSearch(query){
             
@@ -170,6 +171,7 @@ client.on('message', message => {
                 let qs = await anime.searchAnimeFLV(data.title)
                 let url = `https://animeflv.net${qs}`
                 if(qs === undefined) url = 'No se pudo encontrar el Anime!'
+                if(data.title === undefined) return 'No se pudo encontrar el anime.'
                 const embed = new Discord.MessageEmbed()
                 .setColor('#1ed3ec')
                 .setTitle(`Anime encontrado!  :heart:  |   Titulo: ${data.title}`)
@@ -193,7 +195,7 @@ client.on('message', message => {
         
         
         // loadSearch(query)
-    } else if (command === `buscarmanga`){
+    } else if (command === `${prefix}buscarmanga`){
 
          
         
@@ -224,6 +226,8 @@ client.on('message', message => {
         }
         let query = [args]
         loadManga(verifyQuery(query))
+    } else if (command === `${prefix}8ball`){
+        message.channel.send(ball.rollBall(args))
     }
 });
 

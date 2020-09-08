@@ -31,6 +31,7 @@ app.get('/', (req, res) => {
 
 
 
+// app.use('/auth/authorize', require('./auth/discord'))
 
 
 
