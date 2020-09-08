@@ -5,7 +5,7 @@ const DabiImages = require("dabi-images"); // NSFW
 const DabiClient = new DabiImages.Client();
 
 const axios = require('axios').default // Peticiones
-
+const config = require('../config')
 
 
 // Algunos Comandos
@@ -19,7 +19,7 @@ const anime = require('../bot/commands/anime')
 
 // Inicia el bot desde index.js
 function init() {
-    client.login(process.env.TOKEN);
+    client.login(config.TOKEN);
 }
 
 client.on('ready', () => {
@@ -32,24 +32,24 @@ client.on('message', message => {
 
 	// const commandHandler = message.content.trim().toLowerCase()
 	// const argsHandler = message.content.trim().toLowerCase().split(' ')
-    const prefix = process.env.PREFIX
+    const prefix = config.PREFIX
     
     const args = message.content.slice(prefix.length).trim().split(/ +/);
-    const command = args.shift().toLowerCase();
-    
+    const command = message.content.trim().toLowerCase()
 
-	if (command === `info`) {
+
+	if (command === `${prefix}info`) {
 		message.channel.send('Toda la informacion en <#746278725443780699>')
-	} else if (command === `roll`){
-        
+	} else if (command === `${prefix}roll`){
+    
         message.reply(`Tu numero: ${rnum.roll()}`)
 
-    } else if (command === `play`){
+    } else if (command === `${prefix}play`){
 
         message.channel.send(play.turnPlay(args))
  
     
-    } else if (command === `poto`){
+    } else if (command === `${prefix}poto`){
         if(!message.channel.nsfw) {
             message.channel.send('Intentalo nuevamente en un canal NSFW')
             return;
@@ -77,7 +77,7 @@ client.on('message', message => {
         poto()
         
 
-    } else if (command === `hentai`){
+    } else if (command === `${prefix}hentai`){
         if(!message.channel.nsfw) {
             message.channel.send('Intentalo nuevamente en un canal NSFW')
             return;
@@ -97,7 +97,7 @@ client.on('message', message => {
 
        }
         loadHentai()
-    } else if (command === `meme`) {
+    } else if (command === `${prefix}meme`) {
     
         async function loadMeme(){
             try{
@@ -140,7 +140,7 @@ client.on('message', message => {
 
         
 
-    } else if (command === `tetica`){
+    } else if (command === `${prefix}tetica`){
         if(!message.channel.nsfw) {
             message.channel.send('Intentalo nuevamente en un canal NSFW')
             return;
@@ -162,7 +162,7 @@ client.on('message', message => {
 
         
         loadBoobs()
-    } else if (command === `buscaranime`){
+    } else if (command === `${prefix}buscaranime`){
 
         async function loadSearch(query){
             
@@ -195,7 +195,7 @@ client.on('message', message => {
         
         
         // loadSearch(query)
-    } else if (command === `buscarmanga`){
+    } else if (command === `${prefix}buscarmanga`){
 
          
         
