@@ -35,10 +35,10 @@ client.on('message', message => {
     const prefix = config.PREFIX
     
     const args = message.content.slice(prefix.length).trim().split(/ +/);
-    const command = message.content.trim().toLowerCase()
+    const command = prefix + args.shift().toLowerCase();
 
 
-	if (command === `${prefix}info`) {
+	if(command === `${prefix}info`) {
 		message.channel.send('Toda la informacion en <#746278725443780699>')
 	} else if (command === `${prefix}roll`){
     
@@ -118,7 +118,7 @@ client.on('message', message => {
         loadMeme()
         
 
-    } else if (command === `dolar`){
+    } else if (command === `${prefix}dolar`){
         const from = args[0];
         const to = args[1];
         const value = args[2];
@@ -225,14 +225,16 @@ client.on('message', message => {
 
         }
         let query = [args]
+        console.log(query)
         loadManga(verifyQuery(query))
-    } else if (command === `8ball`){
+    } else if (command === `${prefix}8ball`){
         message.channel.send(ball.rollBall(args))
     }
 });
 
 function verifyQuery(query){
     let array = query;
+
     const filterArr = array.filter(elm => elm)
 
     if(filterArr.length === 0){
