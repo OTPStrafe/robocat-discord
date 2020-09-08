@@ -38,18 +38,18 @@ client.on('message', message => {
     const command = args.shift().toLowerCase();
     
 
-	if (command === `${prefix}info`) {
+	if (command === `info`) {
 		message.channel.send('Toda la informacion en <#746278725443780699>')
-	} else if (command === `${prefix}roll`){
+	} else if (command === `roll`){
         
         message.reply(`Tu numero: ${rnum.roll()}`)
 
-    } else if (command === `${prefix}play`){
+    } else if (command === `play`){
 
         message.channel.send(play.turnPlay(args))
  
     
-    } else if (command === `${prefix}poto`){
+    } else if (command === `poto`){
         if(!message.channel.nsfw) {
             message.channel.send('Intentalo nuevamente en un canal NSFW')
             return;
@@ -77,7 +77,7 @@ client.on('message', message => {
         poto()
         
 
-    } else if (command === `${prefix}hentai`){
+    } else if (command === `hentai`){
         if(!message.channel.nsfw) {
             message.channel.send('Intentalo nuevamente en un canal NSFW')
             return;
@@ -97,7 +97,7 @@ client.on('message', message => {
 
        }
         loadHentai()
-    } else if (command === `${prefix}meme`) {
+    } else if (command === `meme`) {
     
         async function loadMeme(){
             try{
@@ -118,7 +118,7 @@ client.on('message', message => {
         loadMeme()
         
 
-    } else if (command === `${prefix}dolar`){
+    } else if (command === `dolar`){
         const from = args[0];
         const to = args[1];
         const value = args[2];
@@ -140,7 +140,7 @@ client.on('message', message => {
 
         
 
-    } else if (command === `${prefix}tetica`){
+    } else if (command === `tetica`){
         if(!message.channel.nsfw) {
             message.channel.send('Intentalo nuevamente en un canal NSFW')
             return;
@@ -162,7 +162,7 @@ client.on('message', message => {
 
         
         loadBoobs()
-    } else if (command === `${prefix}buscaranime`){
+    } else if (command === `buscaranime`){
 
         async function loadSearch(query){
             
@@ -195,7 +195,7 @@ client.on('message', message => {
         
         
         // loadSearch(query)
-    } else if (command === `${prefix}buscarmanga`){
+    } else if (command === `buscarmanga`){
 
          
         
@@ -226,7 +226,7 @@ client.on('message', message => {
         }
         let query = [args]
         loadManga(verifyQuery(query))
-    } else if (command === `${prefix}8ball`){
+    } else if (command === `8ball`){
         message.channel.send(ball.rollBall(args))
     }
 });
