@@ -6,7 +6,7 @@ const DabiClient = new DabiImages.Client();
 
 const axios = require('axios').default // Peticiones
 
-require('dotenv').config()
+
 
 // Algunos Comandos
 
