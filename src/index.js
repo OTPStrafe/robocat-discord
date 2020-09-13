@@ -24,14 +24,14 @@ app.listen(port, (req, res) => {
 })
 
 app.get('/', (req, res) => {
-    res.json({
-        message: 'Main Page'
-    })
+  res.json({
+      response: 'Main Page'
+  })
 })
 
 
 
-// app.use('/auth/authorize', require('./auth/discord'))
+app.use('/invite', require('./auth/discord'))
 
 
 
