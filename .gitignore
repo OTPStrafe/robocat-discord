@@ -3,3 +3,4 @@ src/lib
 .env
 master
 node_modules/
+src/auth
