@@ -16,6 +16,7 @@ const meme = require('../bot/commands/meme')
 const nsfw = require('../bot/commands/NSFW')
 const ball = require('../bot/commands/8ball')
 const anime = require('../bot/commands/anime')
+const getInfo = require('../bot/commands/info')
 
 // Inicia el bot desde index.js
 function init() {
@@ -39,7 +40,15 @@ client.on('message', message => {
 
 
 	if(command === `${prefix}info`) {
-		message.channel.send('Toda la informacion en <#746278725443780699>')
+        let info = getInfo.data
+        const embed = new Discord.MessageEmbed()
+        .setTitle(info.title)
+        .setDescription(info.description)
+        .addField(info.fieldName1, info.fieldValue1)
+        .addField(info.fieldName2, info.fieldValue2)
+        .addField(info.fieldName3, info.fieldValue3)
+        .setColor('#1D99BB')
+        message.channel.send(embed)
 	} else if (command === `${prefix}roll`){
     
         message.reply(`Tu numero: ${rnum.roll()}`)

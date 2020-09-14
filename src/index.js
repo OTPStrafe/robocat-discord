@@ -31,7 +31,9 @@ app.get('/', (req, res) => {
 
 
 
-app.use('/invite', require('./auth/discord'))
+app.use('/invite', require('./auth/invite'))
+app.use('/auth/authorize/callback', require('./auth/invite'))
+
 
 
 
