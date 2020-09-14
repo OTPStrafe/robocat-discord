@@ -5,7 +5,7 @@ data = {
 
                   Cualquier bug o problema tambien puedes escribirle a Rich#3505
 
-                  Si quieres invitar al bot a tu servidor puedes usar el siguiente [Enlace](https://robocatjs-discord.herokuapp.com/invite)`,
+                  Si quieres invitar al bot a tu servidor puedes usar el siguiente [Enlace](https://discord.com/oauth2/authorize?client_id=715013244921577482&scope=bot)`,
     fieldName1: 'Comandos Generales',
     fieldValue1: '-info  -8ball  -meme  -play  -roll  -dolar' ,
     fieldName2: 'Comandos NSFW' ,
